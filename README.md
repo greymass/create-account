@@ -1,21 +1,42 @@
-PACKAGE
+Account Creation Library
 =======
 
-Greymass TypeScript library template, intended for libraries that work in any JavaScript context (node.js, Browser, React native), `@types/node` are installed only for tests, don't rely on any node.js types or imports inside `src/` (no `buffer`, `crypto` imports etc, they can be filled for browser but will bloat the bundle 100x)
+This library allows you to prompt the user to create and initialize an account using Anchor.
 
 ## Installation
 
-The `PACKAGE` package is distributed as a module on [npm](https://www.npmjs.com/package/PACKAGE).
+The `@greymass/account-creation` package is distributed as a module on [npm](https://www.npmjs.com/package/@greymass/account-creation).
 
 ```
-yarn add PACKAGE
+yarn add @greymass/account-creation
 # or
-npm install --save PACKAGE
+npm install --save @greymass/account-creation
 ```
 
 ## Usage
 
-TODO
+```
+import { AccountCreator } from '@greymass/account-creation'
+
+// Initialize the account creator object
+const accountCreator = new AccountCreator({
+  supportedChains: [], // List of supported chains.
+  scope: 'wallet', // A string representing the scope of the account creation.
+  loginOnCreate: true, // Tells anchor to attach an identityProof on account creation.
+  returnUrl: 'http://wallet.greymass.com', // Url to return the user to once the account is created.
+})
+
+// Open a popup window prompting the user to create an account.
+const creationResult = await accountCreator.createAccount()
+
+console.log(creationResult);
+// {
+//   status: 'success',     // Will be success if the account was created successfully.
+//   actor: 'test.gm',      // Account name of the created account.
+//   network: 'eos',        // Network where the account was created.
+//   identity_proof: {...}  // Signed identity proof, proving that the created account is owned by the current user.
+// }
+```
 
 ## Developing
 
