@@ -1,12 +1,12 @@
 {
-    "name": "PACKAGE",
+    "name": "@greymass/account-creation",
     "description": "DESCRIPTION",
     "version": "0.0.0",
-    "homepage": "https://github.com/greymass/PACKAGE",
+    "homepage": "https://github.com/greymass/account-creation-lib",
     "license": "BSD-3-Clause",
-    "main": "lib/PACKAGE.js",
-    "module": "lib/PACKAGE.m.js",
-    "types": "lib/PACKAGE.d.ts",
+    "main": "lib/account-creation.js",
+    "module": "lib/account-creation.m.js",
+    "types": "lib/account-creation.d.ts",
     "sideEffects": false,
     "files": [
         "lib/*",
