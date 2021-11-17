@@ -7,9 +7,11 @@
  */
 
 import {NameType} from '@greymass/eosio'
-import {IdentityProof} from 'eosio-signing-request'
 
-export interface AccountCreationOptions {
+import {IdentityProof} from "eosio-signing-request";
+
+export interface AccountCreationOptions
+{
     scope: NameType
 
     supportedChains?: Record<string, string>
@@ -20,13 +22,13 @@ export interface AccountCreationOptions {
 }
 
 interface CreateAccountResponse {
-    actor?: NameType
+    actor?: NameType;
 
-    network?: string
+    network?: string;
 
-    identityProof?: IdentityProof
+    identityProof?: IdentityProof;
 
-    error?: string
+    error?: string;
 }
 
 const accountCreationUrl = 'https://create.anchor.link'
@@ -49,7 +51,8 @@ export class AccountCreator {
         this.returnUrl = options.returnUrl
     }
 
-    async createAccount(): Promise<CreateAccountResponse> {
+
+    async createAccount() : Promise<CreateAccountResponse> {
         const supportedChains =
             this.supportedChains &&
             `supported_chains=${Object.keys(this.supportedChains).join(',')}`
