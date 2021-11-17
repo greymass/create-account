@@ -6,12 +6,10 @@
  * @returns The solution.
  */
 
-import { NameType } from '@greymass/eosio'
+import {NameType} from '@greymass/eosio'
+import {IdentityProof} from 'eosio-signing-request'
 
 export interface AccountCreationOptions {
-    /**
-     * Override of the supported resource provider chains.
-     */
     scope: NameType
 
     supportedChains?: Record<string, string>
@@ -21,7 +19,17 @@ export interface AccountCreationOptions {
     returnUrl?: string
 }
 
-const accountCreationUrl = 'https://create.anchor.link';
+interface CreateAccountResponse {
+    actor?: NameType
+
+    network?: string
+
+    identityProof?: IdentityProof
+
+    error?: string
+}
+
+const accountCreationUrl = 'https://create.anchor.link'
 
 export class AccountCreator {
     /** Package version. */
@@ -41,22 +49,15 @@ export class AccountCreator {
         this.returnUrl = options.returnUrl
     }
 
-    async createAccount() {
-        const supportedChains = this.supportedChains && `supported_chains=${
-            Object.keys(this.supportedChains).join(',')
-            }`;
-        const popupWindowUrl =
-            `${
-                accountCreationUrl
-                }/create?${
-                `supported_chains=${supportedChains || ''}`
-                }${
-                `&scope=${this.scope}`
-                }${
-                `&return_url=${this.returnUrl || ''}`
-                }${
-                this.loginOnCreate ? '&login_on_create=true' : ''
-                }`;
+    async createAccount(): Promise<CreateAccountResponse> {
+        const supportedChains =
+            this.supportedChains &&
+            `supported_chains=${Object.keys(this.supportedChains).join(',')}`
+        const popupWindowUrl = `${accountCreationUrl}/create?${`supported_chains=${
+            supportedChains || ''
+        }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}${
+            this.loginOnCreate ? '&login_on_create=true' : ''
+        }`
 
         this.popupWindow = window.open(
             popupWindowUrl,
@@ -69,37 +70,34 @@ export class AccountCreator {
             resizable=yes,
             width=400,
             height=600`
-        )!;
+        )!
 
-        return new Promise(resolve => {
-            window.addEventListener("message", (event) => {
-                // if (event.origin !== accountCreationUrl) {
-                //     return;
-                // }
+        return new Promise((resolve) => {
+            window.addEventListener(
+                'message',
+                (event) => {
+                    if (event.data.status === 'success') {
+                        resolve({
+                            actor: event.data.actor,
+                            network: event.data.network,
+                            identityProof: event.data.identity_proof,
+                        })
+                    } else {
+                        resolve({
+                            error:
+                                event.data.error ||
+                                'An error occurred during the account creation process.',
+                        })
+                    }
 
-                console.log({data: event.data});
-
-                if (event.data.status === 'success') {
-                    resolve({
-                        actor: event.data.actor,
-                        network: event.data.network,
-                        identityProof: event.data.identity_proof,
-                    });
-                } else {
-                    resolve({
-                        error: event.data.error || 'An error occurred during the account creation process.'
-                    });
-                }
-
-                this.popupWindow && this.popupWindow.close();
-            }, false);
-        });
-
-
+                    this.popupWindow?.close()
+                },
+                false
+            )
+        })
     }
 
     closeDialog() {
-        this.popupWindow && this.popupWindow.close()
+        this.popupWindow?.close()
     }
 }
-
