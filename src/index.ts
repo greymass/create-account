@@ -31,7 +31,7 @@ interface CreateAccountResponse {
     error?: string;
 }
 
-const accountCreationUrl = 'https://create.anchor.link'
+const accountCreationUrl = 'http://192.168.1.65:3000' //'https://create.anchor.link'
 
 export class AccountCreator {
     /** Package version. */
@@ -56,7 +56,7 @@ export class AccountCreator {
         const supportedChains =
             this.supportedChains &&
             `supported_chains=${Object.keys(this.supportedChains).join(',')}`
-        const popupWindowUrl = `${accountCreationUrl}/create?${`supported_chains=${
+        const popupWindowUrl = `${accountCreationUrl}/activate/ASRlNTY1ZWI3My0wYmEwLTRhYTEtYjM3Zi1jN2NmMDAyZDgwOWQA?${`supported_chains=${
             supportedChains || ''
         }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}${
             this.loginOnCreate ? '&login_on_create=true' : ''

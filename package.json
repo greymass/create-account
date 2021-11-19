@@ -2,7 +2,7 @@
     "name": "@greymass/account-creation",
     "description": "DESCRIPTION",
     "version": "0.0.0",
-    "homepage": "https://github.com/greymass/account-creation-lib",
+    "homepage": "https://github.com/greymass/account-creation-lib#debug",
     "license": "BSD-3-Clause",
     "main": "lib/account-creation.js",
     "module": "lib/account-creation.m.js",
