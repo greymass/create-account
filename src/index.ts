@@ -8,12 +8,11 @@
 
 import {NameType} from '@greymass/eosio'
 
-import {IdentityProof} from "eosio-signing-request";
+import {IdentityProof} from 'eosio-signing-request'
 
-import {generateReturnUrl} from "./utils";
+import {generateReturnUrl} from './utils'
 
-export interface AccountCreationOptions
-{
+export interface AccountCreationOptions {
     scope: NameType
 
     supportedChains?: Record<string, string>
@@ -24,16 +23,16 @@ export interface AccountCreationOptions
 }
 
 interface CreateAccountResponse {
-    actor?: NameType;
+    actor?: NameType
 
-    network?: string;
+    network?: string
 
-    identityProof?: IdentityProof;
+    identityProof?: IdentityProof
 
-    error?: string;
+    error?: string
 }
 
-const accountCreationUrl = 'http://192.168.1.68:3000' //'https://create.anchor.link'
+const accountCreationUrl = 'https://create.anchor.link'
 
 export class AccountCreator {
     /** Package version. */
@@ -53,12 +52,11 @@ export class AccountCreator {
         this.returnUrl = options.returnUrl || generateReturnUrl()
     }
 
-
-    async createAccount() : Promise<CreateAccountResponse> {
+    async createAccount(): Promise<CreateAccountResponse> {
         const supportedChains =
             this.supportedChains &&
             `supported_chains=${Object.keys(this.supportedChains).join(',')}`
-        const popupWindowUrl = `${accountCreationUrl}/activate/ASRlZWY0ODg5ZS0yMTRlLTRkZGItYTkxNS02YzE0YWU2ZjNhM2UA?${`supported_chains=${
+        const popupWindowUrl = `${accountCreationUrl}/create?${`supported_chains=${
             supportedChains || ''
         }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}${
             this.loginOnCreate ? '&login_on_create=true' : ''
