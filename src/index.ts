@@ -7,7 +7,10 @@
  */
 
 import {NameType} from '@greymass/eosio'
+
 import {IdentityProof} from 'eosio-signing-request'
+
+import {generateReturnUrl} from './utils'
 
 export interface AccountCreationOptions {
     scope: NameType
@@ -46,7 +49,7 @@ export class AccountCreator {
         this.supportedChains = options.supportedChains
         this.scope = options.scope
         this.loginOnCreate = options.loginOnCreate
-        this.returnUrl = options.returnUrl
+        this.returnUrl = options.returnUrl || generateReturnUrl()
     }
 
     async createAccount(): Promise<CreateAccountResponse> {
