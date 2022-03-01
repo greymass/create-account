@@ -1,11 +1,3 @@
-/**
- * Solve for completeness.
- * @param n The number.
- * @param p The problem.
- * @param hard Set to true for super hard problem.
- * @returns The solution.
- */
-
 import {NameType} from '@greymass/eosio'
 
 import {generateReturnUrl} from './utils'
