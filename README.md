@@ -15,6 +15,10 @@ npm install --save @greymass/account-creation
 
 ## Usage
 
+This function will automatically open a popup window prompting the user to buy an account. Once the payment is received,
+the account will be redirected to Anchor with an account creation code. Anchor is then expected to send a confirmation or
+error message back before sending the user back to the defined url.
+
 ```
 import { AccountCreator } from '@greymass/account-creation'
 
@@ -22,7 +26,6 @@ import { AccountCreator } from '@greymass/account-creation'
 const accountCreator = new AccountCreator({
   supportedChains: [], // List of supported chains.
   scope: 'wallet', // A string representing the scope of the account creation.
-  loginOnCreate: true, // Tells anchor to attach an identityProof on account creation.
   returnUrl: 'http://wallet.greymass.com', // Url to return the user to once the account is created.
 })
 
