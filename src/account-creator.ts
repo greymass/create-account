@@ -14,13 +14,14 @@ export class AccountCreator {
 
     private scope: NameType
     private supportedChains?: Record<string, string>
+    private whalesplainerUrl?: string
     private loginOnCreate?: boolean
     private returnUrl?: string
 
     constructor(public readonly options: AccountCreationOptions) {
         this.supportedChains = options.supportedChains
         this.scope = options.scope
-        this.loginOnCreate = options.loginOnCreate
+        this.whalesplainerUrl = options.whalesplainerUrl || 'https://create.anchor.link'
         this.returnUrl = options.returnUrl || generateReturnUrl()
     }
 

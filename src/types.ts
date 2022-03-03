@@ -6,6 +6,8 @@ export interface AccountCreationOptions {
 
     supportedChains?: Record<string, string>
 
+    whalesplainerUrl?: string
+
     loginOnCreate?: boolean
 
     returnUrl?: string
