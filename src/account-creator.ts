@@ -21,7 +21,7 @@ export class AccountCreator {
     constructor(public readonly options: AccountCreationOptions) {
         this.supportedChains = options.supportedChains
         this.scope = options.scope
-        this.whalesplainerUrl = options.whalesplainerUrl || 'https://create.anchor.link'
+        this.whalesplainerUrl = options.whalesplainerUrl || accountCreationUrl
         this.returnUrl = options.returnUrl || generateReturnUrl()
     }
 
@@ -29,7 +29,7 @@ export class AccountCreator {
         const supportedChains =
             this.supportedChains &&
             `supported_chains=${Object.keys(this.supportedChains).join(',')}`
-        const popupWindowUrl = `${accountCreationUrl}/create?${`supported_chains=${
+        const popupWindowUrl = `${this.whalesplainerUrl}/create?${`supported_chains=${
             supportedChains || ''
         }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}${
             this.loginOnCreate ? '&login_on_create=true' : ''
