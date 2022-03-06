@@ -35,6 +35,8 @@ export class AccountCreator {
             this.loginOnCreate ? '&login_on_create=true' : ''
         }`
 
+        console.log({popupWindowUrl})
+
         this.popupWindow = window.open(
             popupWindowUrl,
             'targetWindow',
