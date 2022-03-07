@@ -1,5 +1,5 @@
-import { NameType } from "@greymass/eosio";
-import { IdentityProof } from "eosio-signing-request";
+import { NameType } from '@greymass/eosio'
+import { IdentityProof } from 'eosio-signing-request'
 
 export interface AccountCreationOptions {
     scope: NameType
@@ -7,8 +7,6 @@ export interface AccountCreationOptions {
     supportedChains?: Record<string, string>
 
     whalesplainerUrl?: string
-
-    loginOnCreate?: boolean
 
     returnUrl?: string
 }

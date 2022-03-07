@@ -1,8 +1,8 @@
-import {NameType} from '@greymass/eosio'
+import { NameType } from '@greymass/eosio'
 
-import {generateReturnUrl} from './utils'
+import { generateReturnUrl } from './utils'
 
-import {AccountCreationOptions, AccountCreationResponse} from './types'
+import { AccountCreationOptions, AccountCreationResponse } from './types'
 
 const accountCreationUrl = 'https://create.anchor.link'
 
@@ -15,7 +15,6 @@ export class AccountCreator {
     private scope: NameType
     private supportedChains?: Record<string, string>
     private whalesplainerUrl?: string
-    private loginOnCreate?: boolean
     private returnUrl?: string
 
     constructor(public readonly options: AccountCreationOptions) {
@@ -32,8 +31,6 @@ export class AccountCreator {
         const popupWindowUrl = `${this.whalesplainerUrl}/create?${`supported_chains=${
             supportedChains || ''
         }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}`
-
-        console.log({popupWindowUrl, supportedChains})
 
         this.popupWindow = window.open(
             popupWindowUrl,
@@ -52,7 +49,6 @@ export class AccountCreator {
             window.addEventListener(
                 'message',
                 (event) => {
-                    console.log({ message: event.data})
                     if (event.data.status === 'success') {
                         resolve({
                             actor: event.data.actor,

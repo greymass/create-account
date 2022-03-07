@@ -10,11 +10,11 @@ import { Base64u } from 'eosio-signing-request'
 export type CreateRequestType =
     | string
     | {
-    code: string
-    login_url?: string
-    return_url? : string
-    scope?: string
-}
+          code: string
+          login_url?: string
+          return_url?: string
+          scope?: string
+      }
 
 @Struct.type('create_payload')
 export class CreateRequest extends Struct {

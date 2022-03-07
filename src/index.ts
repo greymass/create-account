@@ -1,5 +1,5 @@
-export * from './account-creator';
+export * from './account-creator'
 
-export * from './create-request';
+export * from './create-request'
 
-export * from './types';
+export * from './types'
