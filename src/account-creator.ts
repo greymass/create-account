@@ -31,11 +31,9 @@ export class AccountCreator {
             `supported_chains=${Object.keys(this.supportedChains).join(',')}`
         const popupWindowUrl = `${this.whalesplainerUrl}/create?${`supported_chains=${
             supportedChains || ''
-        }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}${
-            this.loginOnCreate ? '&login_on_create=true' : ''
-        }`
+        }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}`
 
-        console.log({popupWindowUrl})
+        console.log({popupWindowUrl, supportedChains})
 
         this.popupWindow = window.open(
             popupWindowUrl,
@@ -54,6 +52,7 @@ export class AccountCreator {
             window.addEventListener(
                 'message',
                 (event) => {
+                    console.log({ message: event.data})
                     if (event.data.status === 'success') {
                         resolve({
                             actor: event.data.actor,
