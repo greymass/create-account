@@ -36,7 +36,7 @@ console.log(creationResult);
 // {
 //   status: 'success',     // Will be success if the account was created successfully.
 //   actor: 'test.gm',      // Account name of the created account.
-//   network: 'eos',        // Network where the account was created.
+//   network: '...',        // Chain id of the network where the account was created.
 //   identity_proof: {...}  // Signed identity proof, proving that the created account is owned by the current user.
 // }
 ```
