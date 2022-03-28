@@ -7,11 +7,7 @@ import { AccountCreationOptions, AccountCreationResponse } from './types'
 const accountCreationUrl = 'https://create.anchor.link'
 
 export class AccountCreator {
-    /** Package version. */
-    static version = '__ver' // replaced by build script
-
     private popupWindow?: Window
-
     private scope: NameType
     private supportedChains?: Record<string, string>
     private whalesplainerUrl?: string
