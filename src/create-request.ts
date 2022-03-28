@@ -4,7 +4,7 @@
  * First byte of payload is version, remainder is ABIencoded CreateRequest.
  */
 
-import { Bytes, Serializer, Struct } from '@greymass/eosio'
+import { Bytes, Name, Serializer, Struct } from '@greymass/eosio'
 import { Base64u } from 'eosio-signing-request'
 
 export type CreateRequestType =
@@ -23,7 +23,7 @@ export class CreateRequest extends Struct {
     @Struct.field('string') declare code: string
     @Struct.field('string?') declare login_url?: string
     @Struct.field('string$') declare return_url?: string
-    @Struct.field('string$') declare scope?: string
+    @Struct.field('name$') declare scope?: Name
 
     static from(value: CreateRequestType): CreateRequest {
         if (typeof value === 'string') {
