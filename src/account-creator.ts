@@ -1,35 +1,37 @@
-import { NameType } from '@greymass/eosio'
+import { Name } from '@greymass/eosio'
+import { ChainId } from 'eosio-signing-request'
 
 import { generateReturnUrl } from './utils'
-
 import { AccountCreationOptions, AccountCreationResponse } from './types'
-
-const accountCreationUrl = 'https://create.anchor.link'
 
 export class AccountCreator {
     private popupWindow?: Window
-    private scope: NameType
-    private supportedChains?: Record<string, string>
-    private whalesplainerUrl?: string
-    private returnUrl?: string
+    private scope?: Name
+    private supportedChains: ChainId[]
+    private whalesplainerUrl: string
+    private returnUrl: string
 
     constructor(public readonly options: AccountCreationOptions) {
-        this.supportedChains = options.supportedChains
-        this.scope = options.scope
-        this.whalesplainerUrl = options.whalesplainerUrl || accountCreationUrl
+        this.supportedChains = (options.supportedChains || []).map((id) => ChainId.from(id))
+        if (options.scope) {
+            this.scope = Name.from(options.scope)
+        }
+        this.whalesplainerUrl = options.whalesplainerUrl || 'https://create.anchor.link'
         this.returnUrl = options.returnUrl || generateReturnUrl()
     }
 
     async createAccount(): Promise<AccountCreationResponse> {
-        const supportedChains =
-            this.supportedChains &&
-            `supported_chains=${Object.keys(this.supportedChains).join(',')}`
-        const popupWindowUrl = `${this.whalesplainerUrl}/create?${`supported_chains=${
-            supportedChains || ''
-        }`}${`&scope=${this.scope}`}${`&return_url=${this.returnUrl || ''}`}`
-
+        const qs = new URLSearchParams()
+        qs.set('return_url', this.returnUrl)
+        if (this.supportedChains.length > 0) {
+            qs.set('supported_chains', this.supportedChains.map(String).join(','))
+        }
+        if (this.scope) {
+            qs.set('scope', String(this.scope))
+        }
+        const url = `${this.whalesplainerUrl}/create?${qs}`
         this.popupWindow = window.open(
-            popupWindowUrl,
+            url,
             'targetWindow',
             `toolbar=no,
             location=no,
