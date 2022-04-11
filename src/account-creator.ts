@@ -44,27 +44,12 @@ export class AccountCreator {
         )!
 
         return new Promise((resolve) => {
-            window.addEventListener(
-                'message',
-                (event) => {
-                    if (event.data.status === 'success') {
-                        resolve({
-                            actor: event.data.actor,
-                            network: event.data.network,
-                            identityProof: event.data.identity_proof,
-                        })
-                    } else {
-                        resolve({
-                            error:
-                                event.data.error ||
-                                'An error occurred during the account creation process.',
-                        })
-                    }
-
-                    this.popupWindow?.close()
-                },
-                false
-            )
+            const listener = (event: MessageEvent) => {
+                window.removeEventListener('message', listener)
+                this.popupWindow?.close()
+                resolve(event.data)
+            }
+            window.addEventListener('message', listener)
         })
     }
 

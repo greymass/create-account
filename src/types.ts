@@ -1,5 +1,5 @@
 import { NameType } from '@greymass/eosio'
-import { ChainIdType, IdentityProof } from 'eosio-signing-request'
+import type { CallbackPayload, ChainIdType } from 'eosio-signing-request'
 
 export interface AccountCreationOptions {
     scope: NameType
@@ -8,14 +8,8 @@ export interface AccountCreationOptions {
     returnUrl?: string
 }
 
-export interface AccountCreationSuccessResponse {
-    actor: NameType
-    network: string
-    identityProof: IdentityProof
-}
-
 export interface AccountCreationErrorResponse {
     error: string
 }
 
-export type AccountCreationResponse = AccountCreationSuccessResponse | AccountCreationErrorResponse
+export type AccountCreationResponse = CallbackPayload | AccountCreationErrorResponse
