@@ -15,8 +15,11 @@
     "scripts": {
         "prepare": "make"
     },
+    "resolutions": {
+        "@greymass/eosio": "^0.6.0"
+    },
     "dependencies": {
-        "@greymass/eosio": "^0.5.2",
+        "@greymass/eosio": "^0.6.0",
         "eosio-signing-request": "^2.3.1",
         "tslib": "^2.1.0"
     },
@@ -27,6 +30,7 @@
         "@rollup/plugin-node-resolve": "^13.0.2",
         "@rollup/plugin-typescript": "^8.1.1",
         "@rollup/plugin-virtual": "^2.0.3",
+        "@types/chai": "^4.3.1",
         "@types/mocha": "^9.0.0",
         "@types/node": "^16.4.0",
         "@typescript-eslint/eslint-plugin": "^5.3.1",
