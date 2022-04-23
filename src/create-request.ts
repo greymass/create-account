@@ -18,15 +18,13 @@ import {
 } from '@greymass/eosio'
 import { Base64u, SigningRequest } from 'eosio-signing-request'
 
-export type CreateRequestType =
-    | CreateRequest
-    | string
-    | {
-          code: string
-          login_url?: string
-          login_scope?: NameType
-          return_path?: string
-      }
+export type CreateRequestArguments = {
+    code: string
+    login_url?: string
+    login_scope?: NameType
+    return_path?: string
+}
+export type CreateRequestType = CreateRequest | string | CreateRequestArguments
 
 enum CreateInfoKey {
     login_scope = 1,
