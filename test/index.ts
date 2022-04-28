@@ -2,8 +2,6 @@ import { assert } from 'chai'
 
 import { PermissionLevel } from '@greymass/eosio'
 
-import type { AccountCreationResponse } from '../src/types'
-
 import * as lib from '$lib'
 
 suite('create request', function () {

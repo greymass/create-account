@@ -44,7 +44,7 @@ export class AccountCreator {
             height=600`
         )!
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const listener = (event: MessageEvent) => {
                 window.removeEventListener('message', listener)
                 this.popupWindow?.close()
@@ -59,7 +59,7 @@ export class AccountCreator {
                 if (this.popupWindow && this.popupWindow.closed) {
                     this.cleanup()
 
-                    reject(new Error('Popup window closed'))
+                    resolve({ error: 'Popup window closed' })
                 }
             }, 500)
         })
