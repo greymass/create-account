@@ -2,6 +2,8 @@ import { assert } from 'chai'
 
 import { PermissionLevel } from '@greymass/eosio'
 
+import type { AccountCreationResponse } from '../src/types'
+
 import * as lib from '$lib'
 
 suite('create request', function () {
@@ -15,6 +17,7 @@ suite('create request', function () {
         const req = lib.CreateRequest.from('anchorcreate://AQt0ZXN0Y29kZTEyMwAA')
         assert.equal(req.code, 'testcode123')
     })
+
     test('metadata', function () {
         const req1 = lib.CreateRequest.from({
             code: '666666',
