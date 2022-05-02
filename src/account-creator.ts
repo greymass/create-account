@@ -47,9 +47,7 @@ export class AccountCreator {
         return new Promise((resolve, reject) => {
             const listener = (event: MessageEvent) => {
                 window.removeEventListener('message', listener)
-                this.popupWindow?.close()
-
-                this.cleanup()
+                this.closeDialog()
 
                 if (event.data.error) {
                     reject(event.data)
@@ -61,7 +59,7 @@ export class AccountCreator {
 
             this.popupStatusInterval = setInterval(() => {
                 if (this.popupWindow && this.popupWindow.closed) {
-                    this.cleanup()
+                    this.closeDialog()
 
                     reject({ error: 'Popup window closed' })
                 }
@@ -69,13 +67,15 @@ export class AccountCreator {
         })
     }
 
+    closeDialog() {
+        this.popupWindow?.close()
+
+        this.cleanup()
+    }
+
     cleanup() {
         this.popupStatusInterval && clearInterval(this.popupStatusInterval)
         this.popupStatusInterval = undefined
         this.popupWindow = undefined
-    }
-
-    closeDialog() {
-        this.popupWindow?.close()
     }
 }
