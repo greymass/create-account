@@ -61,7 +61,7 @@ export class AccountCreator {
                 if (this.popupWindow && this.popupWindow.closed) {
                     this.closeDialog()
 
-                    reject({ error: 'Popup window closed' })
+                    reject(new Error('Popup window closed'))
                 }
             }, 500)
         })
