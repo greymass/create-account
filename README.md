@@ -30,7 +30,7 @@ const accountCreator = new AccountCreator({
 })
 
 // Open a popup window prompting the user to create an account.
-const creationResult = await accountCreator.createAccount().catch(({ error }) => {
+const creationResult = await accountCreator.createAccount().catch((error) => {
   // Handle error
 })
 
