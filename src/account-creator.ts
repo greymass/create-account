@@ -50,7 +50,7 @@ export class AccountCreator {
                 this.closeDialog()
 
                 if (event.data.error) {
-                    reject(event.data)
+                    reject(new Error(event.data.error))
                 } else {
                     resolve(event.data)
                 }
