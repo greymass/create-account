@@ -1,7 +1,7 @@
 {
     "name": "@greymass/account-creation",
     "description": "An account creation library for EOSIO chains that leverages Anchor.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "homepage": "https://github.com/greymass/account-creation-lib",
     "license": "BSD-3-Clause",
     "main": "lib/account-creation.js",
