@@ -1,16 +1,16 @@
-Account Creation Library
+Account Creation Transport
 =======
 
 This library allows you to prompt the user to create and initialize an account using Anchor.
 
 ## Installation
 
-The `@greymass/account-creation` package is distributed as a module on [npm](https://www.npmjs.com/package/@greymass/account-creation).
+The `@greymass/account-creation-transport` package is distributed as a module on [npm](https://www.npmjs.com/package/@greymass/account-creation).
 
 ```
-yarn add @greymass/account-creation
+yarn add @greymass/account-creation-transport
 # or
-npm install --save @greymass/account-creation
+npm install --save @greymass/account-creation-transport
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ the account will be redirected to Anchor with an account creation code. Anchor i
 error message back before sending the user back to the defined url.
 
 ```
-import { AccountCreator } from '@greymass/account-creation'
+import { AccountCreator } from '@greymass/account-creation-transport'
 
 // Initialize the account creator object
 const accountCreator = new AccountCreator({
@@ -31,18 +31,10 @@ const accountCreator = new AccountCreator({
 
 // Open a popup window prompting the user to create an account.
 accountCreator.createAccount().then((creationResult) => {
-  // Handle success
+  // Handle success, the creationResult will be an esr callback object.
 }).catch((error) => {
   // Handle error
 })
-
-console.log(creationResult);
-// {
-//   status: 'success',     // Will be success if the account was created successfully.
-//   actor: 'test.gm',      // Account name of the created account.
-//   network: '...',        // Chain id of the network where the account was created.
-//   identity_proof: {...}  // Signed identity proof, proving that the created account is owned by the current user.
-// }
 ```
 
 ## Developing
