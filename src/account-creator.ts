@@ -1,7 +1,7 @@
 import { Name } from '@greymass/eosio'
 import { ChainId } from 'eosio-signing-request'
+import { detectReturnPath } from '@greymass/return-path'
 
-import { generateReturnUrl } from './utils'
 import { AccountCreationOptions, AccountCreationResponse } from './types'
 
 export class AccountCreator {
@@ -18,7 +18,7 @@ export class AccountCreator {
             this.scope = Name.from(options.scope)
         }
         this.whalesplainerUrl = options.whalesplainerUrl || 'https://create.anchor.link'
-        this.returnUrl = options.returnUrl || generateReturnUrl()
+        this.returnUrl = options.returnUrl || detectReturnPath()
     }
 
     async createAccount(): Promise<AccountCreationResponse> {

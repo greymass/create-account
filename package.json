@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@greymass/eosio": "^0.6.0",
+        "@greymass/return-path": "^0.0.1",
         "eosio-signing-request": "^2.3.1",
         "tslib": "^2.1.0"
     },
