@@ -1,16 +1,16 @@
-Account Creation Transport
+Create Account Library
 =======
 
 This library allows you to prompt the user to create and initialize an account using Anchor.
 
 ## Installation
 
-The `@greymass/account-creation-transport` package is distributed as a module on [npm](https://www.npmjs.com/package/@greymass/account-creation).
+The `@greymass/create-account` package is distributed as a module on [npm](https://www.npmjs.com/package/@greymass/create-account).
 
 ```
-yarn add @greymass/account-creation-transport
+yarn add @greymass/create-account
 # or
-npm install --save @greymass/account-creation-transport
+npm install --save @greymass/create-account
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ the account will be redirected to Anchor with an account creation code. Anchor i
 error message back before sending the user back to the defined url.
 
 ```
-import { AccountCreator } from '@greymass/account-creation-transport'
+import { AccountCreator } from '@greymass/create-account';
 
 // Initialize the account creator object
 const accountCreator = new AccountCreator({
