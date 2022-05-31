@@ -8,7 +8,7 @@ export class AccountCreator {
     private popupWindow?: Window
     private scope?: Name
     private supportedChains: ChainId[]
-    private whalesplainerUrl: string
+    private creationServiceUrl: string
     private returnUrl: string
     private popupStatusInterval?: ReturnType<typeof setInterval>
 
@@ -17,7 +17,7 @@ export class AccountCreator {
         if (options.scope) {
             this.scope = Name.from(options.scope)
         }
-        this.whalesplainerUrl = options.whalesplainerUrl || 'https://create.anchor.link'
+        this.creationServiceUrl = options.creationServiceUrl || 'https://create.anchor.link'
         this.returnUrl = options.returnUrl || detectReturnPath()
     }
 
@@ -30,7 +30,7 @@ export class AccountCreator {
         if (this.scope) {
             qs.set('scope', String(this.scope))
         }
-        const url = `${this.whalesplainerUrl}/create?${qs}`
+        const url = `${this.creationServiceUrl}/create?${qs}`
         this.popupWindow = window.open(
             url,
             'targetWindow',

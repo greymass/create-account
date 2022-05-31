@@ -4,7 +4,7 @@ import type { CallbackPayload, ChainIdType } from 'eosio-signing-request'
 export interface AccountCreationOptions {
     scope: NameType
     supportedChains?: ChainIdType[]
-    whalesplainerUrl?: string
+    creationServiceUrl?: string
     returnUrl?: string
 }
 
