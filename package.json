@@ -1,12 +1,12 @@
 {
-    "name": "PACKAGE",
-    "description": "DESCRIPTION",
-    "version": "0.0.0",
-    "homepage": "https://github.com/greymass/PACKAGE",
+    "name": "@greymass/create-account",
+    "description": "An account creation library for EOSIO chains that leverages Anchor.",
+    "version": "0.0.8",
+    "homepage": "https://github.com/greymass/create-account",
     "license": "BSD-3-Clause",
-    "main": "lib/PACKAGE.js",
-    "module": "lib/PACKAGE.m.js",
-    "types": "lib/PACKAGE.d.ts",
+    "main": "lib/create-account.js",
+    "module": "lib/create-account.m.js",
+    "types": "lib/create-account.d.ts",
     "sideEffects": false,
     "files": [
         "lib/*",
@@ -15,7 +15,13 @@
     "scripts": {
         "prepare": "make"
     },
+    "resolutions": {
+        "@greymass/eosio": "^0.6.0"
+    },
     "dependencies": {
+        "@greymass/eosio": "^0.6.0",
+        "@greymass/return-path": "^0.0.1",
+        "eosio-signing-request": "^2.3.1",
         "tslib": "^2.1.0"
     },
     "devDependencies": {
@@ -25,6 +31,7 @@
         "@rollup/plugin-node-resolve": "^13.0.2",
         "@rollup/plugin-typescript": "^8.1.1",
         "@rollup/plugin-virtual": "^2.0.3",
+        "@types/chai": "^4.3.1",
         "@types/mocha": "^9.0.0",
         "@types/node": "^16.4.0",
         "@typescript-eslint/eslint-plugin": "^5.3.1",

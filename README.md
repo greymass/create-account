@@ -1,21 +1,41 @@
-PACKAGE
+Create Account Library
 =======
 
-Greymass TypeScript library template, intended for libraries that work in any JavaScript context (node.js, Browser, React native), `@types/node` are installed only for tests, don't rely on any node.js types or imports inside `src/` (no `buffer`, `crypto` imports etc, they can be filled for browser but will bloat the bundle 100x)
+This library allows you to prompt the user to create and initialize an account using Anchor.
 
 ## Installation
 
-The `PACKAGE` package is distributed as a module on [npm](https://www.npmjs.com/package/PACKAGE).
+The `@greymass/create-account` package is distributed as a module on [npm](https://www.npmjs.com/package/@greymass/create-account).
 
 ```
-yarn add PACKAGE
+yarn add @greymass/create-account
 # or
-npm install --save PACKAGE
+npm install --save @greymass/create-account
 ```
 
 ## Usage
 
-TODO
+This function will automatically open a popup window prompting the user to buy an account. Once the payment is received,
+the account will be redirected to Anchor with an account creation code. Anchor is then expected to send a confirmation or
+error message back before sending the user back to the defined url.
+
+```
+import { AccountCreator } from '@greymass/create-account';
+
+// Initialize the account creator object
+const accountCreator = new AccountCreator({
+  supportedChains: [], // List of supported chains.
+  scope: 'wallet', // A string representing the scope of the account creation.
+  returnUrl: 'http://wallet.greymass.com', // Url to return the user to once the account is created.
+})
+
+// Open a popup window prompting the user to create an account.
+accountCreator.createAccount().then((creationResult) => {
+  // Handle success, the creationResult will be an esr callback object.
+}).catch((error) => {
+  // Handle error
+})
+```
 
 ## Developing
 
