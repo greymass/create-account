@@ -1,5 +1,5 @@
-import { Name } from '@greymass/eosio'
-import { ChainId } from 'eosio-signing-request'
+import { Name } from '@wharfkit/antelope'
+import { ChainId } from '@wharfkit/signing-request'
 import { detectReturnPath } from '@greymass/return-path'
 
 import { AccountCreationOptions, AccountCreationResponse } from './types'

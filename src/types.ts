@@ -1,5 +1,5 @@
-import { NameType } from '@greymass/eosio'
-import type { CallbackPayload, ChainIdType } from 'eosio-signing-request'
+import { NameType } from '@wharfkit/antelope'
+import type { CallbackPayload, ChainIdType } from '@wharfkit/signing-request'
 
 export interface AccountCreationOptions {
     scope: NameType
