@@ -5,6 +5,7 @@ export interface AccountCreationOptions {
     scope: NameType
     supportedChains?: ChainIdType[]
     creationServiceUrl?: string
+    fullCreationServiceUrl?: string
     returnUrl?: string
 }
 
