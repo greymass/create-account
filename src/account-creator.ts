@@ -9,6 +9,7 @@ export class AccountCreator {
     private scope?: Name
     private supportedChains: ChainId[]
     private creationServiceUrl: string
+    private fullCreationServiceUrl?: string
     private returnUrl: string
     private popupStatusInterval?: ReturnType<typeof setInterval>
 
@@ -18,6 +19,7 @@ export class AccountCreator {
             this.scope = Name.from(options.scope)
         }
         this.creationServiceUrl = options.creationServiceUrl || 'https://create.anchor.link'
+        this.fullCreationServiceUrl = options.fullCreationServiceUrl
         this.returnUrl = options.returnUrl || detectReturnPath()
     }
 
@@ -30,7 +32,9 @@ export class AccountCreator {
         if (this.scope) {
             qs.set('scope', String(this.scope))
         }
-        const url = `${this.creationServiceUrl}/create?${qs}`
+        const url = this.fullCreationServiceUrl
+            ? this.fullCreationServiceUrl
+            : `${this.creationServiceUrl}/create?${qs}`
         this.popupWindow = window.open(
             url,
             'targetWindow',
