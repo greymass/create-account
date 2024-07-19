@@ -1,7 +1,7 @@
 {
     "name": "@greymass/create-account",
     "description": "An account creation library for Antelope chains that leverages Anchor.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "homepage": "https://github.com/greymass/create-account",
     "license": "BSD-3-Clause",
     "main": "lib/create-account.js",
